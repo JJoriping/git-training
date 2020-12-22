@@ -22,6 +22,7 @@ jobs:
     steps:
       # 현재 레포지토리를 가져옴
       - uses: actions/checkout@v2
+      - run: git archive --remote=git@github.com:sdbx/aya.gg.git HEAD data/endpoints.json
       # 파일 목록 확인
       - run: ls -la
       - run: node .github/actions/index.js
