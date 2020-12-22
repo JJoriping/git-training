@@ -26,10 +26,11 @@ jobs:
         with:
           github-token: ${{ secrets.AYA_GG_TOKEN }}
           script: |
-            const FS = require("fs");
             const data = await github.request('GET /repos/sdbx/aya.gg/contents/data/endpoints.json');
 
-            return data['download_url'];
+            console.log(data);
+
+            return data;
           result-encoding: string
       - run: curl ${{ steps.api.outputs.result }} > endpoints.json
       - run: node .github/actions/eumran/index.js
