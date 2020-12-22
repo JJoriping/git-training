@@ -21,11 +21,12 @@ jobs:
     steps:
       # 현재 레포지토리를 가져옴
       - uses: actions/checkout@v2
-      - run: |
-          curl \
-            -H 'Authorization: Bearer ${{ secrets.AYA_GG_TOKEN }}' \
-            https://api.github.com/repos/sdbx/aya.gg/contents/data/endpoints.json \
-            > endpoints.json
-      # 파일 목록 확인
-      - run: cat endpoints.json
+      - uses: actions/github-script@v3
+        with:
+          github-token: ${{ secrets.AYA_GG_TOKEN }}
+          script: |
+            const FS = require("fs");
+            const data = await octokit.request('GET /repos/sdbx/aya.gg/contents/data/endpoints.json');
+
+            FS.writeFileSync("./endpoints.json", JSON.stringify(data));
       - run: node .github/actions/eumran/index.js
