@@ -1,4 +1,4 @@
-import FS from "fs";
+const FS = require("fs");
 
 console.log("나는 낭만 고양이~");
 console.log("슬픈 도시를 비춰~");

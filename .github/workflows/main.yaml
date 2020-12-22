@@ -29,4 +29,4 @@ jobs:
             > endpoints.json
       # 파일 목록 확인
       - run: ls -la
-      - run: node .github/actions/index.js
+      - run: node .github/actions/eumran
