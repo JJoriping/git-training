@@ -22,11 +22,14 @@ jobs:
       # 현재 레포지토리를 가져옴
       - uses: actions/checkout@v2
       - uses: actions/github-script@v3
+        id: api
         with:
           github-token: ${{ secrets.AYA_GG_TOKEN }}
           script: |
             const FS = require("fs");
-            const data = await octokit.request('GET /repos/sdbx/aya.gg/contents/data/endpoints.json');
+            const data = await github.request('GET /repos/sdbx/aya.gg/contents/data/endpoints.json');
 
-            FS.writeFileSync("./endpoints.json", JSON.stringify(data));
+            return data['download_url'];
+          result-encoding: string
+      - run: curl ${{ steps.api.outputs.result }} > endpoints.json
       - run: node .github/actions/eumran/index.js
