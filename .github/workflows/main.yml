@@ -20,5 +20,6 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - run: ls -la
       # 이렇게 적으면 작동하는가? 어디의 index.js를 참조할까?
       - run: node index.js
