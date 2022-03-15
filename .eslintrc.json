@@ -1,0 +1,14 @@
+{
+  "root": true,
+  "extends": "@riiid/eslint-config",
+  "settings": {
+    "import/internal-regex": "^@src/"
+  },
+  "env": {
+    "browser": true,
+    "node": true
+  },
+  "rules": {
+    "react/react-in-jsx-scope": 0
+  }
+}
